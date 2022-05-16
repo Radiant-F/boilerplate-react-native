@@ -1,7 +1,6 @@
-import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {Auth, Dashboard} from '../screens/export';
+import {Auth, Dashboard} from '../screens/exports';
 
 const Stack = createNativeStackNavigator();
 

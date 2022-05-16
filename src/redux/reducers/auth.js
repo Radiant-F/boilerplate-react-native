@@ -1,12 +1,21 @@
-import {AUTH_TYPE, LOGIN} from '../actionTypes';
+import {createSlice} from '@reduxjs/toolkit';
 
-export default (state = {data: null, auth_type: 'login'}, action) => {
-  switch (action.type) {
-    case LOGIN:
-      return {...state, data: action.payload};
-    case AUTH_TYPE:
-      return {...state, auth_type: action.payload};
-    default:
-      return state;
-  }
-};
+export const authSlice = createSlice({
+  name: 'auth',
+  initialState: {
+    user_data: null,
+    is_login: true,
+  },
+  reducers: {
+    userData: (state, action) => {
+      state.token = action.payload;
+    },
+    isLogin: (state, action) => {
+      state.is_login = action.payload;
+    },
+  },
+});
+
+export const {isLogin, userData} = authSlice.actions;
+
+export default authSlice.reducer;

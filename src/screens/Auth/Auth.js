@@ -14,7 +14,7 @@ export default function Auth() {
       {is_login ? <Login /> : <Register />}
       <Button
         title="ubah cara masuk"
-        onPress={() => dispatch(isLogin(false))}
+        onPress={() => dispatch(isLogin(!is_login))}
       />
     </View>
   );

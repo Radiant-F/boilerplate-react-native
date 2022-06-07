@@ -1,20 +1,21 @@
 import {StyleSheet, Text, View, Button} from 'react-native';
 import React from 'react';
-import {Login, Register} from '../../components/exports';
 import {useDispatch, useSelector} from 'react-redux';
-import {isLogin} from '../../redux/reducers/auth';
+import {authReducers} from '../../redux/reducers/auth';
+import {AUTH_TYPE} from '../../redux/ActionTypes';
 
 export default function Auth() {
+  const {is_login} = useSelector(state => state.auth);
   const dispatch = useDispatch();
-  const {is_login, user_data} = useSelector(state => state.auth);
-
   return (
     <View>
       <Text>Auth</Text>
-      {is_login ? <Login /> : <Register />}
+      <Text>{is_login ? 'Login' : 'Register'}</Text>
       <Button
-        title="ubah cara masuk"
-        onPress={() => dispatch(isLogin(!is_login))}
+        title="change auth type"
+        onPress={() =>
+          dispatch(authReducers({type: AUTH_TYPE, payload: !is_login}))
+        }
       />
     </View>
   );

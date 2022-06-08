@@ -1,4 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit';
+import {login} from '../actions/auth';
 import {AUTH_TYPE, USER_DATA} from '../ActionTypes';
 
 const authSlice = createSlice({
@@ -13,7 +14,7 @@ const authSlice = createSlice({
       const {type, payload} = action.payload;
       switch (type) {
         case AUTH_TYPE:
-          return {...state, is_login: payload};
+          return {...state, is_login: !state.is_login};
         case USER_DATA:
           return {...state, user_data: payload};
         default:
@@ -21,7 +22,17 @@ const authSlice = createSlice({
       }
     },
   },
-  extraReducers: {},
+  extraReducers: {
+    [login.pending]: state => {
+      state.status = 'loading';
+    },
+    [login.fulfilled]: state => {
+      state.status = 'success';
+    },
+    [login.rejected]: state => {
+      state.status = 'error';
+    },
+  },
 });
 
 export const {authReducers} = authSlice.actions;

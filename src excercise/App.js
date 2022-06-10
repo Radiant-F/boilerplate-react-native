@@ -1,8 +1,7 @@
-import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {Provider} from 'react-redux';
-import Dashboard from './screens/Dashboard';
 import {store} from './redux/store';
+import Dashboard from './screens/Dashboard';
 
 export default function App() {
   return (
@@ -11,5 +10,3 @@ export default function App() {
     </Provider>
   );
 }
-
-const styles = StyleSheet.create({});

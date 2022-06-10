@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const url = 'https://lalala.com';
+const url = 'https://your-host.com';
 const tokenConfig = token => ({
   headers: {
     Authorization: `Bearer ${token}`,
@@ -9,3 +9,4 @@ const tokenConfig = token => ({
 
 export const fetchLogin = formData =>
   axios.post(`${url}/user/signin`, formData);
+export const fetchTodo = token => axios.get(`${url}/todos`, tokenConfig(token));
